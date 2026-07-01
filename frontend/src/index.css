@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-body;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+/* Gold hairline divider used across the site as the signature motif */
+.hairline {
+  @apply relative flex items-center justify-center gap-3 text-gold-600;
+}
+.hairline::before,
+.hairline::after {
+  content: "";
+  @apply h-px w-10 bg-gold-500/60;
+}
+
+.btn-primary {
+  @apply inline-block bg-wine-600 text-cream px-6 py-3 rounded-full font-body font-medium tracking-wide hover:bg-wine-700 transition-colors duration-300;
+}
+
+.btn-outline {
+  @apply inline-block border border-gold-500 text-wine-700 px-6 py-3 rounded-full font-body font-medium tracking-wide hover:bg-gold-100 transition-colors duration-300;
+}
+
+/* Same shape as btn-outline, but readable on dark (wine/ink) backgrounds */
+.btn-outline-light {
+  @apply inline-block border border-gold-300 text-gold-300 px-6 py-3 rounded-full font-body font-medium tracking-wide hover:bg-cream/10 transition-colors duration-300;
+}
+
+.card {
+  @apply bg-white/70 backdrop-blur-sm rounded-2xl shadow-sm border border-gold-100 p-6;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
