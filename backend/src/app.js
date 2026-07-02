@@ -37,9 +37,13 @@ app.get("/api/test", (req, res) => {
   res.send("API TEST WORKING");
 });
 
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
+app.get("/api/health-check", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "Health check is working!",
+  });
 });
+
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/appointments", appointmentRoutes);
