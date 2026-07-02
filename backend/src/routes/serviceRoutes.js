@@ -1,4 +1,7 @@
 const express = require("express");
+
+console.log("✅ serviceRoutes loaded");
+
 const {
   getServices, getServiceById, createService, updateService, deleteService,
 } = require("../controllers/serviceController");
