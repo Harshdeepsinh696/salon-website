@@ -30,7 +30,7 @@ export default function DashboardLayout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+
       <div className="flex-1 max-w-6xl w-full mx-auto grid md:grid-cols-[220px_1fr] gap-8 px-5 py-10">
         <aside className="md:sticky md:top-24 h-fit">
           <nav className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible">
@@ -40,8 +40,7 @@ export default function DashboardLayout() {
                 to={item.to}
                 end={item.end}
                 className={({ isActive }) =>
-                  `whitespace-nowrap px-4 py-2.5 rounded-lg text-sm transition-colors ${
-                    isActive ? "bg-wine-600 text-cream" : "text-ink/70 hover:bg-gold-100"
+                  `whitespace-nowrap px-4 py-2.5 rounded-lg text-sm transition-colors ${isActive ? "bg-wine-600 text-cream" : "text-ink/70 hover:bg-gold-100"
                   }`
                 }
               >
