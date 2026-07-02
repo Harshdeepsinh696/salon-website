@@ -29,10 +29,17 @@ app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
+app.get("/test", (req, res) => {
+  res.send("TEST ROUTE WORKING");
+});
+
+app.get("/api/test", (req, res) => {
+  res.send("API TEST WORKING");
+});
+
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
 });
-
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/appointments", appointmentRoutes);
