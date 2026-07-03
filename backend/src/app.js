@@ -35,7 +35,6 @@ app.use(
   })
 );
 
-app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
