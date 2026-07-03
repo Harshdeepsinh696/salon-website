@@ -53,14 +53,39 @@ const customerLogin = asyncHandler(async (req, res) => {
 // (see prisma-free seed.js) with credentials from .env.
 const ownerLogin = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ where: { ownerUsername: username, role: "owner" } });
 
-  if (!user || !(await bcrypt.compare(password, user.password))) {
+  console.log("========== OWNER LOGIN ==========");
+  console.log("Username received:", username);
+
+  const user = await User.findOne({
+    where: {
+      ownerUsername: username,
+      role: "owner",
+    },
+  });
+
+  console.log("User found:", !!user);
+
+  if (user) {
+    console.log("Database username:", user.ownerUsername);
+
+    const match = await bcrypt.compare(password, user.password);
+
+    console.log("Password match:", match);
+
+    if (!match) {
+      res.status(401);
+      throw new Error("Invalid owner ID or password.");
+    }
+  } else {
     res.status(401);
     throw new Error("Invalid owner ID or password.");
   }
 
-  res.json({ user: toSafeUser(user), token: generateToken(user) });
+  res.json({
+    user: toSafeUser(user),
+    token: generateToken(user),
+  });
 });
 
 module.exports = { customerSignup, customerLogin, ownerLogin };
