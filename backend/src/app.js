@@ -15,10 +15,25 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("Incoming request:", req.method, req.originalUrl);
-  next();
-});
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://familysalon.netlify.app",
+];
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true); // Allow Postman/server-to-server
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
 
 app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(express.json());
