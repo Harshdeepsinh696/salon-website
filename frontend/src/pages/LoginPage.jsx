@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 import Button from "../components/common/Button";
 import { useAuth } from "../context/AuthContext";
 import { authService } from "../services/authService";
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [form, setForm] = useState({ identifier: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,9 +52,8 @@ export default function LoginPage() {
           <button
             key={r}
             onClick={() => setRole(r)}
-            className={`flex-1 py-2 rounded-full text-sm capitalize transition-colors ${
-              role === r ? "bg-wine-600 text-cream" : "text-wine-700"
-            }`}
+            className={`flex-1 py-2 rounded-full text-sm capitalize transition-colors ${role === r ? "bg-wine-600 text-cream" : "text-wine-700"
+              }`}
           >
             {r}
           </button>
@@ -71,10 +72,25 @@ export default function LoginPage() {
         </div>
         <div>
           <label className="text-sm text-ink/60 block mb-1">Password</label>
-          <input
-            type="password" name="password" value={form.password} onChange={handleChange} required
-            className="w-full rounded-lg border border-gold-100 px-4 py-2.5 bg-cream focus:outline-none focus:ring-2 focus:ring-gold-300"
-          />
+
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="w-full rounded-lg border border-gold-100 px-4 py-2.5 pr-12 bg-cream focus:outline-none focus:ring-2 focus:ring-gold-300"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-wine-700"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
         </div>
         <Button type="submit" disabled={loading} className="w-full">
           {loading ? "Logging in..." : "Log In"}
