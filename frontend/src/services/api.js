@@ -2,6 +2,10 @@ import axios from "axios";
 
 // Base axios instance pointing at the backend (Node.js + Express).
 // Update VITE_API_URL in .env once the backend is deployed.
+
+//temp change
+console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
   headers: { "Content-Type": "application/json" },
