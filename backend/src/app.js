@@ -58,6 +58,8 @@ app.get("/api/health-check", (req, res) => {
   });
 });
 
+console.log("Auth routes mounted");
+
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/appointments", appointmentRoutes);

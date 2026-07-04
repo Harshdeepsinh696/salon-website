@@ -1,3 +1,5 @@
+console.log("authRoutes.js loaded");
+
 const express = require("express");
 const { customerSignup, customerLogin, ownerLogin } = require("../controllers/authController");
 
@@ -8,3 +10,4 @@ router.post("/customer/login", customerLogin);
 router.post("/owner/login", ownerLogin);
 
 module.exports = router;
+
